@@ -6,6 +6,12 @@ const createProduct = async (productsData: IFProducts) => {
   return result;
 };
 
+const getAllProducts = async () => {
+  const result = await ProductModel.find();
+  return result;
+};
+
 export const ProductServices = {
   createProduct,
+  getAllProducts,
 };

@@ -11,7 +11,7 @@ export const inventorySchema = z.object({
 });
 
 export const productsValidationSchema = z.object({
-  name: z.string().min(3).max(10),
+  name: z.string().min(3).max(30),
   description: z.string(),
   price: z.number(),
   category: z.string(),
