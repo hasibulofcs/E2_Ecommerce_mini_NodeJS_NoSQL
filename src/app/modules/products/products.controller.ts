@@ -1,5 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import { z } from "zod";
+import { productsValidationSchema } from "./products.validation";
+import { ProductServices } from "./products.services";
 
 const createProduct = async (
   req: Request,
@@ -7,10 +10,14 @@ const createProduct = async (
   next: NextFunction
 ) => {
   try {
+    const product = productsValidationSchema.parse(req.body);
+
+    const result = await ProductServices.createProduct(product);
+
     res.status(StatusCodes.OK).json({
       success: true,
       status: StatusCodes.OK,
-      message: "Successful hit on create products route",
+      result: result,
     });
   } catch (error) {
     next(error);
