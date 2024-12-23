@@ -16,7 +16,7 @@ const createProduct = async (
     res.status(StatusCodes.OK).json({
       success: true,
       status: StatusCodes.OK,
-      result: result,
+      data: result,
     });
   } catch (error) {
     next(error);
@@ -34,7 +34,25 @@ const getAllProducts = async (
     res.status(StatusCodes.OK).json({
       success: true,
       status: StatusCodes.OK,
-      result: result,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const _id = req.params.productId;
+    const result = await ProductServices.getProductById(_id);
+    res.status(StatusCodes.OK).json({
+      success: true,
+      status: StatusCodes.OK,
+      data: result,
     });
   } catch (error) {
     next(error);
@@ -44,4 +62,5 @@ const getAllProducts = async (
 export const ProductsController = {
   createProduct,
   getAllProducts,
+  getProductById,
 };
