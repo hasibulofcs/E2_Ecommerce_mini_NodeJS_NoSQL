@@ -34,18 +34,19 @@ const getAllProducts = async (
     let result = {};
 
     if (searchTerm) {
-      result = await ProductServices.getAllProductsBySearchTerm(
+      result = await ProductServices.getProductBySearchTerm(
         searchTerm.toString()
       );
     } else {
       result = await ProductServices.getAllProducts();
-
-      res.status(StatusCodes.OK).json({
-        success: true,
-        status: StatusCodes.OK,
-        data: result,
-      });
     }
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      status: StatusCodes.OK,
+      message: `${searchTerm} search result`,
+      data: result,
+    });
   } catch (error) {
     next(error);
   }

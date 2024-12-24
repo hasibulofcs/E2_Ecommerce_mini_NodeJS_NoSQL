@@ -11,9 +11,9 @@ const getAllProducts = async () => {
   return result;
 };
 
-const getAllProductsBySearchTerm = async (searchTerm: string) => {
+const getProductBySearchTerm = async (searchTerm: string) => {
   const result = await ProductModel.find({
-    name: searchTerm,
+    name: { $regex: searchTerm, $options: "i" },
   });
   return result;
 };
@@ -40,7 +40,7 @@ const deleteProductById = async (id: string) => {
 export const ProductServices = {
   createProduct,
   getAllProducts,
-  getAllProductsBySearchTerm,
+  getProductBySearchTerm,
   getProductById,
   updateProductById,
   deleteProductById,
