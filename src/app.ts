@@ -1,4 +1,4 @@
-import express, { Application } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { AppRoutes } from "./app/routes";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
@@ -10,7 +10,14 @@ app.use(cors());
 
 app.use("/api/v1", AppRoutes);
 
-app.use(globalErrorHandler);
+app.use(
+  globalErrorHandler as (
+    err: any,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => void
+);
 app.use(notFound);
 
 export default app;
