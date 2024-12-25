@@ -4,13 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const config_1 = __importDefault(require("./app/config"));
 const cors_1 = __importDefault(require("cors"));
+const routes_1 = require("./app/routes");
+const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
+const notFound_1 = __importDefault(require("./app/middlewares/notFound"));
 const app = (0, express_1.default)();
-const port = config_1.default.port || 3000;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
+app.use("/api/v1", routes_1.AppRoutes);
+app.use(globalErrorHandler_1.default);
+app.use(notFound_1.default);
 exports.default = app;

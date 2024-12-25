@@ -5,7 +5,8 @@
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/server.ts",
     "dev": "tsc --watch",
-    "lint": "eslint . --ext .ts"
+    "build": "tsc",
+    "lint": "npx eslint ./src"
   },
   "keywords": [],
   "author": "",
