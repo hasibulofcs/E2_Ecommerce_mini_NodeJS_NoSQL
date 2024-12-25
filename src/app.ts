@@ -4,8 +4,17 @@ import { AppRoutes } from "./app/routes";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFound from "./app/middlewares/notFound";
 import { StatusCodes } from "http-status-codes";
+import helmet from "helmet";
+import { rateLimit } from "express-rate-limit";
+
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 200, // Limit each IP to 100 requests per window
+});
 
 const app: Application = express();
+app.use(helmet()); // prevent attacks like click-jacking and XSS
+app.use(limiter); // limiting api requests
 app.use(express.json());
 app.use(cors());
 
