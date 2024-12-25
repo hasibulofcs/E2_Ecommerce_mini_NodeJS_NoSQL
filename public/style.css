@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.title {
+  letter-spacing: 5px;
+  text-align: center;
+  margin-top: 24px;
+  font-size: 36px;
+}

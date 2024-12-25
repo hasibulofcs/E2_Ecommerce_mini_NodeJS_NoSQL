@@ -17,16 +17,17 @@ app.use(helmet()); // prevent attacks like click-jacking and XSS
 app.use(limiter); // limiting api requests
 app.use(express.json());
 app.use(cors());
+app.use(express.static("public"));
 
 app.use("/api/v1", AppRoutes);
 
-app.get("/", (_req: Request, res: Response) => {
-  res.status(StatusCodes.OK).json({
-    success: true,
-    status: StatusCodes.OK,
-    message: "Welcome to E-commerce app API",
-  });
-});
+// app.get("/", (_req: Request, res: Response) => {
+//   res.status(StatusCodes.OK).json({
+//     success: true,
+//     status: StatusCodes.OK,
+//     message: "Welcome to E-commerce app API",
+//   });
+// });
 
 app.use(
   globalErrorHandler as (

@@ -1,7 +1,8 @@
-import { Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 
-const notFound = (res: Response) => {
+// Middleware for handling 404 errors
+const notFound = (req: Request, res: Response, next: NextFunction) => {
   res.status(StatusCodes.NOT_FOUND).json({
     success: false,
     status: StatusCodes.NOT_FOUND,
