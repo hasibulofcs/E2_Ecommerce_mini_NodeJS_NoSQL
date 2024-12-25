@@ -13,7 +13,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const express_rate_limit_1 = require("express-rate-limit");
 const limiter = (0, express_rate_limit_1.rateLimit)({
     windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 200, // Limit each IP to 100 requests per window
+    max: 5, // Limit each IP to 100 requests per window
 });
 const app = (0, express_1.default)();
 app.use((0, helmet_1.default)()); // prevent attacks like click-jacking and XSS
