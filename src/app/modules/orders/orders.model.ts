@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import { IOrder } from "./orders.interface";
 import validator from "validator";
 
@@ -6,7 +6,6 @@ const orderSchema = new Schema<IOrder>({
   email: {
     type: String,
     required: [true, "email is required"],
-    unique: true,
     validate: {
       validator: (value) => validator.isEmail(value),
       message: (result) => `${result.value} is not a valid email address`,
@@ -27,6 +26,8 @@ const orderSchema = new Schema<IOrder>({
   },
 });
 
-const OrderModel = mongoose.model("orders", orderSchema);
+orderSchema.index({ email: 1, productId: 1 }, { unique: true });
+
+const OrderModel = model<IOrder>("orders", orderSchema);
 
 export default OrderModel;

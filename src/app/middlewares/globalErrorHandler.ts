@@ -18,7 +18,6 @@ const globalErrorHandler = (
       statusCode: StatusCodes.BAD_REQUEST,
       message: "Validation error",
       errors: err.errors.map((e) => ({
-        path: e.path,
         message: e.message,
       })),
     });

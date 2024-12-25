@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import { IFInventory, IFProducts, IFTags } from "./products.interface";
 
 const variantsSchema = new Schema<IFTags>({
@@ -57,6 +57,6 @@ const productsSchema = new Schema<IFProducts>({
   inventory: { type: inventorySchema },
 });
 
-const ProductModel = mongoose.model("products", productsSchema);
+const ProductModel = model("products", productsSchema);
 
 export default ProductModel;
