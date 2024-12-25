@@ -9,7 +9,7 @@ import { rateLimit } from "express-rate-limit";
 
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 200, // Limit each IP to 100 requests per window
+  max: 5, // Limit each IP to 100 requests per window
 });
 
 const app: Application = express();
