@@ -5,6 +5,7 @@ import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFound from "./app/middlewares/notFound";
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
+import path from "path";
 
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minutes
@@ -16,10 +17,10 @@ app.use(helmet()); // prevent attacks like click-jacking and XSS
 app.use(limiter); // limiting api requests
 app.use(express.json());
 app.use(cors());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../public")));
 
 app.get("/", (_req: Request, res: Response) => {
-  res.sendFile("index.html", { root: "public" });
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 app.use("/api/v1", AppRoutes);
