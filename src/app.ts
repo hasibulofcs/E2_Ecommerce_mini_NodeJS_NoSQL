@@ -34,6 +34,7 @@ app.use(
     next: NextFunction
   ) => void
 );
+
 app.use(notFound);
 
 export default app;
