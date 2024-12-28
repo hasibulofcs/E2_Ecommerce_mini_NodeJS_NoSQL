@@ -31,7 +31,7 @@ const getAllProducts = async (
 ) => {
   try {
     const { searchTerm } = req.query;
-    let result = {};
+    let result = [];
 
     if (searchTerm) {
       result = await ProductServices.getProductBySearchTerm(
@@ -44,7 +44,7 @@ const getAllProducts = async (
     res.status(StatusCodes.OK).json({
       success: true,
       status: StatusCodes.OK,
-      message: `${searchTerm} search result`,
+      message: `${searchTerm || result.length} search result/s`,
       data: result,
     });
   } catch (error) {
